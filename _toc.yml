@@ -1,0 +1,15 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: welcome
+parts:
+- caption: Getting Started
+  chapters:
+  - file: setting_up
+  - file: my_profile
+- caption: Programming, Data Analysis & Visualisation
+  numbered: true
+  chapters: 
+   - file: chapter_1_intro
+   - file: chapter_2_intro
