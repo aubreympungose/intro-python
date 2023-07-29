@@ -13,3 +13,6 @@ parts:
   chapters: 
    - file: chapter_1_intro
    - file: chapter_2_intro
+   - file: chapter_3
+   - file: chapter_4
+   - file: chapter_5
