@@ -1,0 +1,1408 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>2. Data Structures in Python &#8212; Python for Data Analysis: A gentle introduction</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-LXJC37BJVX"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-LXJC37BJVX');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapter_2_intro';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="1. Introduction to Python Programming" href="chapter_1_intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="welcome.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="welcome.html">
+                    Python for Data Analysis: A gentle introduction
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="setting_up.html">Installing Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="my_profile.html">About Me</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Programming, Data Analysis &amp; Visualisation</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="chapter_1_intro.html">1. Introduction to Python Programming</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Data Structures in Python</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/main?urlpath=lab/tree/docs/chapter_2_intro.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/executablebooks/jupyter-book/blob/main/docs/chapter_2_intro.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapter_2_intro.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/chapter_2_intro.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Data Structures in Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists">2.1. Lists</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subset-a-list">2.1.1. Subset a list</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulate-a-list">2.1.2. Manipulate a list</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulating-list-with-numeric-data">2.1.3. Manipulating list with numeric data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-arrays">2.2. NumPy Arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-statistics-and-mathematical-operations">2.2.1. Summary statistics and mathematical operations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries">2.3. Dictionaries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframes">2.4. DataFrames</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">2.5. Conclusion</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="data-structures-in-python">
+<h1><span class="section-number">2. </span>Data Structures in Python<a class="headerlink" href="#data-structures-in-python" title="Permalink to this headline">#</a></h1>
+<p>In this chapter we deal with different data structures that can hold data in Python. Specifically, we will focus on the follwoing data structures:</p>
+<ul class="simple">
+<li><p>Lists</p></li>
+<li><p>Tuples</p></li>
+<li><p>Dictionaries</p></li>
+<li><p>DataFrames</p></li>
+</ul>
+<section id="lists">
+<h2><span class="section-number">2.1. </span>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">#</a></h2>
+<p>List is a data structure that store a collection of elements/items within it. For example, in <span class="xref myst">previous chapter</span> we created a string variable named <code class="docutils literal notranslate"><span class="pre">country</span></code> that contained “South Africa”  element:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">country</span> <span class="o">=</span> <span class="s2">&quot;South Africa&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">country</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>South Africa
+</pre></div>
+</div>
+</div>
+</div>
+<p>What if we wanted to create another country variable, named country_2 with “Zimbabwe” as an element? We can also do this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">country_2</span> <span class="o">=</span> <span class="s2">&quot;Zimbabwe&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">country_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Zimbabwe
+</pre></div>
+</div>
+</div>
+</div>
+<p>What if we want to add country_3, country_4, etc? We can end up having many variables. This where lists come in. Lists are used to hold many items together. you can create lists in Python by using square barackets (<code class="docutils literal notranslate"><span class="pre">[]</span></code>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">southern_african_countries</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Angola&quot;</span><span class="p">,</span> <span class="s2">&quot;Botswana&quot;</span><span class="p">,</span> <span class="s2">&quot;Lesotho&quot;</span><span class="p">,</span> <span class="s2">&quot;Malawi&quot;</span><span class="p">,</span> <span class="s2">&quot;Mozambique&quot;</span><span class="p">,</span> <span class="s2">&quot;Namibia&quot;</span><span class="p">,</span> <span class="s2">&quot;South Africa&quot;</span><span class="p">,</span> <span class="s2">&quot;Swaziland&quot;</span><span class="p">,</span> <span class="s2">&quot;Zambia&quot;</span><span class="p">,</span> <span class="s2">&quot;Zimbabwe&quot;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">southern_african_countries</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Angola&#39;, &#39;Botswana&#39;, &#39;Lesotho&#39;, &#39;Malawi&#39;, &#39;Mozambique&#39;, &#39;Namibia&#39;, &#39;South Africa&#39;, &#39;Swaziland&#39;, &#39;Zambia&#39;, &#39;Zimbabwe&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We now have a list of all countries in the Southern African region. There are various functions that can be used to extract, analyse and manipulate elements in a list. For example, you may be interested on how many elements are in a lists; in our case, how many countries are in the <code class="docutils literal notranslate"><span class="pre">southern_african_countries</span></code> list. You can use the <code class="docutils literal notranslate"><span class="pre">len()</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">southern_african_countries</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Angola&quot;</span><span class="p">,</span> <span class="s2">&quot;Botswana&quot;</span><span class="p">,</span> <span class="s2">&quot;Lesotho&quot;</span><span class="p">,</span> <span class="s2">&quot;Malawi&quot;</span><span class="p">,</span> <span class="s2">&quot;Mozambique&quot;</span><span class="p">,</span> <span class="s2">&quot;Namibia&quot;</span><span class="p">,</span> <span class="s2">&quot;South Africa&quot;</span><span class="p">,</span> <span class="s2">&quot;Swaziland&quot;</span><span class="p">,</span> <span class="s2">&quot;Zambia&quot;</span><span class="p">,</span> <span class="s2">&quot;Zimbabwe&quot;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">southern_african_countries</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+</pre></div>
+</div>
+</div>
+</div>
+<p>The list has 10 elements/items.</p>
+<section id="subset-a-list">
+<h3><span class="section-number">2.1.1. </span>Subset a list<a class="headerlink" href="#subset-a-list" title="Permalink to this headline">#</a></h3>
+<p>You can extract the list item by using the <code class="docutils literal notranslate"><span class="pre">[]</span></code> and the index position of the item. Note that Python index start at 0, meaning the first element will be in the position 0. This is important especially when coming from R background. Let extract the first element:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">southern_african_countries</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Angola
+</pre></div>
+</div>
+</div>
+</div>
+<p>The first element is Angola.</p>
+<p>You can use can access the last element by:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">southern_african_countries</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Zimbabwe
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can access more than 1 items; for example, extract the first, second and third items in the list by slicing:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">southern_african_countries</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Angola&#39;, &#39;Botswana&#39;, &#39;Lesotho&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that we have included the index <code class="docutils literal notranslate"><span class="pre">3</span></code>, which is the 4th item, although the element itself is not printed. When slicing a list, the last index mentioned is not included. This is very importnt to note. There are other slicing options:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">southern_african_countries</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Angola&#39;, &#39;Botswana&#39;, &#39;Lesotho&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="manipulate-a-list">
+<h3><span class="section-number">2.1.2. </span>Manipulate a list<a class="headerlink" href="#manipulate-a-list" title="Permalink to this headline">#</a></h3>
+<p>List elements can be changed. For example, in 2018 Zwaziland changed their name to “eSwatini”. We can change this in a list. First re-create the list:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">southern_african_countries</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Angola&quot;</span><span class="p">,</span> <span class="s2">&quot;Botswana&quot;</span><span class="p">,</span> <span class="s2">&quot;Lesotho&quot;</span><span class="p">,</span> <span class="s2">&quot;Malawi&quot;</span><span class="p">,</span> <span class="s2">&quot;Mozambique&quot;</span><span class="p">,</span> <span class="s2">&quot;Namibia&quot;</span><span class="p">,</span> <span class="s2">&quot;South Africa&quot;</span><span class="p">,</span> <span class="s2">&quot;Swaziland&quot;</span><span class="p">,</span> <span class="s2">&quot;Zambia&quot;</span><span class="p">,</span> <span class="s2">&quot;Zimbabwe&quot;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">southern_african_countries</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Angola&#39;, &#39;Botswana&#39;, &#39;Lesotho&#39;, &#39;Malawi&#39;, &#39;Mozambique&#39;, &#39;Namibia&#39;, &#39;South Africa&#39;, &#39;Swaziland&#39;, &#39;Zambia&#39;, &#39;Zimbabwe&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then change the list element:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">southern_african_countries</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;eSwatini&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">southern_african_countries</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Angola&#39;, &#39;Botswana&#39;, &#39;Lesotho&#39;, &#39;Malawi&#39;, &#39;Mozambique&#39;, &#39;Namibia&#39;, &#39;South Africa&#39;, &#39;eSwatini&#39;, &#39;Zambia&#39;, &#39;Zimbabwe&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We have changed the list element from “Swaziland” to “Eswatini”.</p>
+<p>You can also <strong>add</strong> new elements in a list. Suppose a geographer told us that our list of Southern African countries missed 3 countries:  Democratic Republic of the Congo, Mauritius, Madagascar and Seychelles. In Python, we can update our list and assign it to anew variable called <code class="docutils literal notranslate"><span class="pre">southern_africa_updated</span></code>. First find the length of the original <code class="docutils literal notranslate"><span class="pre">southern_african_countries</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">southern_african_countries</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+</pre></div>
+</div>
+</div>
+</div>
+<p>Add new items:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">southern_africa_updated</span> <span class="o">=</span> <span class="n">southern_african_countries</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;Democratic Republic of the Congo&quot;</span><span class="p">,</span> <span class="s2">&quot;Mauritius&quot;</span><span class="p">,</span> <span class="s2">&quot;Madagascar&quot;</span><span class="p">,</span> <span class="s2">&quot;Seychelles&quot;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">southern_africa_updated</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Angola&#39;, &#39;Botswana&#39;, &#39;Lesotho&#39;, &#39;Malawi&#39;, &#39;Mozambique&#39;, &#39;Namibia&#39;, &#39;South Africa&#39;, &#39;eSwatini&#39;, &#39;Zambia&#39;, &#39;Zimbabwe&#39;, &#39;Democratic Republic of the Congo&#39;, &#39;Mauritius&#39;, &#39;Madagascar&#39;, &#39;Seychelles&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Find the lenght of the updated variable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">southern_africa_updated</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>14
+</pre></div>
+</div>
+</div>
+</div>
+<p>The updated variable has lenght of 14. This means we have added 4 items.</p>
+<p>You can remove an element from the list by using <code class="docutils literal notranslate"><span class="pre">del()</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">southern_africa_updated</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">southern_africa_updated</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Botswana&#39;, &#39;Lesotho&#39;, &#39;Malawi&#39;, &#39;Mozambique&#39;, &#39;Namibia&#39;, &#39;South Africa&#39;, &#39;eSwatini&#39;, &#39;Zambia&#39;, &#39;Zimbabwe&#39;, &#39;Democratic Republic of the Congo&#39;, &#39;Mauritius&#39;, &#39;Madagascar&#39;, &#39;Seychelles&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We have removed the element at the index 0, which is Botswana.</p>
+</section>
+<section id="manipulating-list-with-numeric-data">
+<h3><span class="section-number">2.1.3. </span>Manipulating list with numeric data<a class="headerlink" href="#manipulating-list-with-numeric-data" title="Permalink to this headline">#</a></h3>
+<p>In above examples we have worked with list that contain string data types: all out elements were string (country names). Suppose we have the life expectancy of those countries. Life expectancy is the average number of years is expected to live:</p>
+<p>Let us create a numeric list, that we name <code class="docutils literal notranslate"><span class="pre">life_expectancy</span></code>, that has the average life expectancy of the countries of Southern Africa:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life_expectancy</span> <span class="o">=</span> <span class="p">[</span><span class="mf">61.6</span><span class="p">,</span> <span class="mf">61.1</span><span class="p">,</span> <span class="mf">57.1</span><span class="p">,</span> <span class="mf">53.1</span><span class="p">,</span> <span class="mf">62.9</span><span class="p">,</span> <span class="mf">59.3</span><span class="p">,</span> <span class="mf">59.3</span><span class="p">,</span> <span class="mf">62.3</span><span class="p">,</span> <span class="mf">61.2</span><span class="p">,</span> <span class="mf">59.3</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">life_expectancy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[61.6, 61.1, 57.1, 53.1, 62.9, 59.3, 59.3, 62.3, 61.2, 59.3]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can find the <strong>minimum</strong> life expactancy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">life_expectancy</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>53.1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Print the <strong>maximum</strong> life expectancy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">life_expectancy</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>62.9
+</pre></div>
+</div>
+</div>
+</div>
+<p>Not that a list can hold elements of of different data types: string, float, integer, boolean, etc.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">person_1</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Aubrey&quot;</span><span class="p">,</span> <span class="s2">&quot;Age&quot;</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="s2">&quot;Height&quot;</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="s2">&quot;Is male?&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">person_1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Name&#39;, &#39;Aubrey&#39;, &#39;Age&#39;, 32, &#39;Height&#39;, 1.8, &#39;Is male?&#39;, True]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="numpy-arrays">
+<h2><span class="section-number">2.2. </span>NumPy Arrays<a class="headerlink" href="#numpy-arrays" title="Permalink to this headline">#</a></h2>
+<p>A NumPy array is a data structure that can hold numeic elements. It is short for Numeric Python. It is an important data structure if you want to manipulate numeric data. First, you will need to install the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> package if not already installed: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">numpy</span></code>. Then load the library as:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Suppose we have the lenght in kilometers of major South Africa rivers stored as a list and assigned it to <code class="docutils literal notranslate"><span class="pre">river_lenght_km</span></code> variable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">river_lenght_km</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2200</span><span class="p">,</span> <span class="mi">1800</span><span class="p">,</span> <span class="mi">1210</span><span class="p">,</span> <span class="mi">502</span><span class="p">,</span> <span class="mi">560</span><span class="p">,</span> <span class="mi">645</span><span class="p">,</span> <span class="mi">520</span><span class="p">,</span> <span class="mi">480</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">river_lenght_km</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2200, 1800, 1210, 502, 560, 645, 520, 480]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We need to convert this lift into an numpy array:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">river_lenght_km</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">river_lenght_km</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">river_lenght_km</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;numpy.ndarray&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<section id="summary-statistics-and-mathematical-operations">
+<h3><span class="section-number">2.2.1. </span>Summary statistics and mathematical operations<a class="headerlink" href="#summary-statistics-and-mathematical-operations" title="Permalink to this headline">#</a></h3>
+<p>There many functions within the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> library. We can calculate summary statistics:</p>
+<p>Get the mean/average:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">river_lenght_km</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>989.625
+</pre></div>
+</div>
+</div>
+</div>
+<p>Get the median:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">river_lenght_km</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>602.5
+</pre></div>
+</div>
+</div>
+</div>
+<p>Get the standard deviation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">river_lenght_km</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>631.6316049526021
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are other functions you can use.</p>
+<p>What are the rivers that have lenght of greater than 1000 kilometers? Find these and assign the result to a variable named longest_rivers</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">longest_rivers</span> <span class="o">=</span> <span class="n">river_lenght_km</span><span class="p">[</span><span class="n">river_lenght_km</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">longest_rivers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2200 1800 1210]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">river_lenght_km</span></code> array is in kilometers. What if we want to convert to meters? Since 1 km = 1000 meters, you can convert kilometer to meter by multplying by 1000 since. Let’s do this and assign result to a new variable named river_lenght_meters</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">river_lenght_meters</span> <span class="o">=</span> <span class="n">river_lenght_km</span> <span class="o">*</span> <span class="mi">1000</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">river_lenght_meters</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[2200000 1800000 1210000  502000  560000  645000  520000  480000]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Just like lists, you can subsets numpy arrays using index positions of the element. To acces the second element of <code class="docutils literal notranslate"><span class="pre">river_lenght_km</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">river_lenght_km</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1800
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can sort elements into ascending or descending order:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">river_lenght_km</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 480,  502,  520,  560,  645, 1210, 1800, 2200])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Sort into descending</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">river_lenght_km</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2200, 1800, 1210,  645,  560,  520,  502,  480])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that NumPy arrays can also be 2 dimensional; 2D arrays is a matrix like data with rows and columns:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">two_d_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+                   <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+                   <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">two_d_array</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1 2 3]
+ [4 5 6]
+ [7 8 9]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="dictionaries">
+<h2><span class="section-number">2.3. </span>Dictionaries<a class="headerlink" href="#dictionaries" title="Permalink to this headline">#</a></h2>
+<p>Remeember we created two lists previously, <code class="docutils literal notranslate"><span class="pre">southern_african_countries</span></code> and <code class="docutils literal notranslate"><span class="pre">life_expectancy</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">southern_african_countries</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Angola&quot;</span><span class="p">,</span> <span class="s2">&quot;Botswana&quot;</span><span class="p">,</span> <span class="s2">&quot;Lesotho&quot;</span><span class="p">,</span> <span class="s2">&quot;Malawi&quot;</span><span class="p">,</span> <span class="s2">&quot;Mozambique&quot;</span><span class="p">,</span> <span class="s2">&quot;Namibia&quot;</span><span class="p">,</span> <span class="s2">&quot;South Africa&quot;</span><span class="p">,</span> <span class="s2">&quot;Swaziland&quot;</span><span class="p">,</span> <span class="s2">&quot;Zambia&quot;</span><span class="p">,</span> <span class="s2">&quot;Zimbabwe&quot;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">southern_african_countries</span><span class="p">)</span>
+
+<span class="n">life_expectancy</span> <span class="o">=</span> <span class="p">[</span><span class="mf">61.6</span><span class="p">,</span> <span class="mf">61.1</span><span class="p">,</span> <span class="mf">57.1</span><span class="p">,</span> <span class="mf">53.1</span><span class="p">,</span> <span class="mf">62.9</span><span class="p">,</span> <span class="mf">59.3</span><span class="p">,</span> <span class="mf">59.3</span><span class="p">,</span> <span class="mf">62.3</span><span class="p">,</span> <span class="mf">61.2</span><span class="p">,</span> <span class="mf">59.3</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">life_expectancy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Angola&#39;, &#39;Botswana&#39;, &#39;Lesotho&#39;, &#39;Malawi&#39;, &#39;Mozambique&#39;, &#39;Namibia&#39;, &#39;South Africa&#39;, &#39;Swaziland&#39;, &#39;Zambia&#39;, &#39;Zimbabwe&#39;]
+[61.6, 61.1, 57.1, 53.1, 62.9, 59.3, 59.3, 62.3, 61.2, 59.3]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can find the corresponding life expectancy of, for example, “Botswana”. First find the index position of Botswana:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">botswana_index</span> <span class="o">=</span> <span class="n">southern_african_countries</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s2">&quot;Botswana&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">botswana_index</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
+</pre></div>
+</div>
+</div>
+</div>
+<p>The index of Botswana is 1. We can access the corresposing life expectancy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life_expectancy</span><span class="p">[</span><span class="n">botswana_index</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>61.1
+</pre></div>
+</div>
+</div>
+</div>
+<p>The life expectancy of Botswana. But this is not efficient if we have large data. This where dictionaries come in:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">southern_africa</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Angola&quot;</span><span class="p">:</span><span class="mf">61.6</span><span class="p">,</span> 
+                   <span class="s2">&quot;Botswana&quot;</span><span class="p">:</span><span class="mf">61.1</span><span class="p">,</span>
+                   <span class="s2">&quot;Lesotho&quot;</span><span class="p">:</span><span class="mf">57.1</span><span class="p">,</span>
+                   <span class="s2">&quot;Malawi&quot;</span><span class="p">:</span><span class="mf">53.1</span><span class="p">,</span>
+                   <span class="s2">&quot;Mozambique&quot;</span><span class="p">:</span><span class="mf">62.9</span><span class="p">,</span>
+                   <span class="s2">&quot;Namibia&quot;</span><span class="p">:</span><span class="mf">59.3</span><span class="p">}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">southern_africa</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Angola&#39;: 61.6, &#39;Botswana&#39;: 61.1, &#39;Lesotho&#39;: 57.1, &#39;Malawi&#39;: 53.1, &#39;Mozambique&#39;: 62.9, &#39;Namibia&#39;: 59.3}
+</pre></div>
+</div>
+</div>
+</div>
+<p>We have created a dictionary named southern_africa. A dictionary has <code class="docutils literal notranslate"><span class="pre">keys</span></code> and <code class="docutils literal notranslate"><span class="pre">values</span></code> and this is always in pairs. For example, we have <code class="docutils literal notranslate"><span class="pre">Angola</span></code> as a key with its corresponding value <code class="docutils literal notranslate"><span class="pre">61.6</span></code>.</p>
+<p>You can find values of each keys:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">southern_africa</span><span class="p">[</span><span class="s2">&quot;Malawi&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>53.1
+</pre></div>
+</div>
+</div>
+</div>
+<p>Of Namibia:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">southern_africa</span><span class="p">[</span><span class="s2">&quot;Namibia&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>59.3
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can find keys of all keys:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">southern_africa</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;Angola&#39;, &#39;Botswana&#39;, &#39;Lesotho&#39;, &#39;Malawi&#39;, &#39;Mozambique&#39;, &#39;Namibia&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you look at the <code class="docutils literal notranslate"><span class="pre">southern_africa</span></code> dictionary, we did not include all other countries in the region. We may need to add, let say, Zimbabwe:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">southern_africa</span><span class="p">[</span><span class="s2">&quot;Zimbabwe&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">59.3</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">southern_africa</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Angola&#39;: 61.6, &#39;Botswana&#39;: 61.1, &#39;Lesotho&#39;: 57.1, &#39;Malawi&#39;: 53.1, &#39;Mozambique&#39;: 62.9, &#39;Namibia&#39;: 59.3, &#39;Zimbabwe&#39;: 59.3}
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can see that the dictionary has been updated to include Zimbwabwe.</p>
+<p>Suppose  demographer pouint out that the values of Botswana is outdated; that the life expectancy of the country has increased from 61.1 to 63! We can update this information</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">southern_africa</span><span class="p">[</span><span class="s2">&quot;Botswana&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">63</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">southern_africa</span><span class="p">[</span><span class="s2">&quot;Botswana&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>63
+</pre></div>
+</div>
+</div>
+</div>
+<p>The value of Botswana has been changed.</p>
+<p>What if we want to add new information in the dictionary? For example, we may want to add the capital cities of the countries in the <code class="docutils literal notranslate"><span class="pre">southern_africa</span></code> dicitionary:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">southern_africa_2</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Angola&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;life_expectancy&quot;</span><span class="p">:</span> <span class="mf">61.6</span><span class="p">,</span> <span class="s2">&quot;capital&quot;</span><span class="p">:</span><span class="s2">&quot;Luanda&quot;</span><span class="p">},</span>
+                     <span class="s2">&quot;Botswana&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;life_expectancy&quot;</span><span class="p">:</span> <span class="mf">61.1</span><span class="p">,</span> <span class="s2">&quot;capital&quot;</span><span class="p">:</span><span class="s2">&quot;Gaborone&quot;</span><span class="p">},</span>
+                     <span class="s2">&quot;Lesotho&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;life_expectancy&quot;</span><span class="p">:</span> <span class="mf">57.1</span><span class="p">,</span> <span class="s2">&quot;capital&quot;</span><span class="p">:</span><span class="s2">&quot;Maseru&quot;</span><span class="p">},</span>
+                     <span class="s2">&quot;Malawi&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;life_expectancy&quot;</span><span class="p">:</span> <span class="mf">53.1</span><span class="p">,</span> <span class="s2">&quot;capital&quot;</span><span class="p">:</span><span class="s2">&quot;Lilongwe&quot;</span><span class="p">},</span>
+                     <span class="s2">&quot;Mozambique&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;life_expectancy&quot;</span><span class="p">:</span> <span class="mf">62.9</span><span class="p">,</span> <span class="s2">&quot;capital&quot;</span><span class="p">:</span><span class="s2">&quot;Maputo&quot;</span><span class="p">},</span>
+                     <span class="s2">&quot;Namibia&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;life_expectancy&quot;</span><span class="p">:</span> <span class="mf">59.3</span><span class="p">,</span> <span class="s2">&quot;capital&quot;</span><span class="p">:</span><span class="s2">&quot;Windhoek&quot;</span><span class="p">}}</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">southern_africa_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Angola&#39;: {&#39;life_expectancy&#39;: 61.6, &#39;capital&#39;: &#39;Luanda&#39;}, &#39;Botswana&#39;: {&#39;life_expectancy&#39;: 61.1, &#39;capital&#39;: &#39;Gaborone&#39;}, &#39;Lesotho&#39;: {&#39;life_expectancy&#39;: 57.1, &#39;capital&#39;: &#39;Maseru&#39;}, &#39;Malawi&#39;: {&#39;life_expectancy&#39;: 53.1, &#39;capital&#39;: &#39;Lilongwe&#39;}, &#39;Mozambique&#39;: {&#39;life_expectancy&#39;: 62.9, &#39;capital&#39;: &#39;Maputo&#39;}, &#39;Namibia&#39;: {&#39;life_expectancy&#39;: 59.3, &#39;capital&#39;: &#39;Windhoek&#39;}}
+</pre></div>
+</div>
+</div>
+</div>
+<p>As you can see in the results, the dictionary has been updated.</p>
+</section>
+<section id="dataframes">
+<h2><span class="section-number">2.4. </span>DataFrames<a class="headerlink" href="#dataframes" title="Permalink to this headline">#</a></h2>
+<p>The previous data structures we have discussed (lists, np.arrays, dictionaries) can handly limited amount of data. In the real world, most data comes big, in a tabular format: with columns and rows. In Python, we use we use the <code class="docutils literal notranslate"><span class="pre">pandas</span></code> package to handle data in a tabular format. You need to install it first as <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pandas</span></code></p>
+<p>Then import <code class="docutils literal notranslate"><span class="pre">pandas</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let return to the previous lists that we have created: list of Southern African countries and corresponding life expectancy:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">country</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Angola&quot;</span><span class="p">,</span> <span class="s2">&quot;Botswana&quot;</span><span class="p">,</span> <span class="s2">&quot;Lesotho&quot;</span><span class="p">,</span> <span class="s2">&quot;Malawi&quot;</span><span class="p">,</span> <span class="s2">&quot;Mozambique&quot;</span><span class="p">,</span> <span class="s2">&quot;Namibia&quot;</span><span class="p">,</span> <span class="s2">&quot;South Africa&quot;</span><span class="p">,</span> <span class="s2">&quot;Swaziland&quot;</span><span class="p">,</span> <span class="s2">&quot;Zambia&quot;</span><span class="p">,</span> <span class="s2">&quot;Zimbabwe&quot;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">country</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Angola&#39;, &#39;Botswana&#39;, &#39;Lesotho&#39;, &#39;Malawi&#39;, &#39;Mozambique&#39;, &#39;Namibia&#39;, &#39;South Africa&#39;, &#39;Swaziland&#39;, &#39;Zambia&#39;, &#39;Zimbabwe&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Create life_expectancy list:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">life_expectancy</span> <span class="o">=</span> <span class="p">[</span><span class="mf">61.6</span><span class="p">,</span> <span class="mf">61.1</span><span class="p">,</span> <span class="mf">57.1</span><span class="p">,</span> <span class="mf">53.1</span><span class="p">,</span> <span class="mf">62.9</span><span class="p">,</span> <span class="mf">59.3</span><span class="p">,</span> <span class="mf">59.3</span><span class="p">,</span> <span class="mf">62.3</span><span class="p">,</span> <span class="mf">61.2</span><span class="p">,</span> <span class="mf">59.3</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">life_expectancy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[61.6, 61.1, 57.1, 53.1, 62.9, 59.3, 59.3, 62.3, 61.2, 59.3]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s add one more list of, for example, population of each country:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">population</span> <span class="o">=</span> <span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">490</span><span class="p">,</span> <span class="mi">740</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">781</span><span class="p">,</span> <span class="mi">610</span><span class="p">,</span> <span class="mi">504</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[500, 600, 1000, 150, 490, 740, 300, 781, 610, 504]
+</pre></div>
+</div>
+</div>
+</div>
+<p>From these three lists, we can create a DataFrame using <code class="docutils literal notranslate"><span class="pre">pandas</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">southern_africa_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;country_name&quot;</span><span class="p">:</span><span class="n">country</span><span class="p">,</span> <span class="s2">&quot;life_expect&quot;</span><span class="p">:</span> <span class="n">life_expectancy</span><span class="p">,</span> <span class="s2">&quot;pop&quot;</span><span class="p">:</span><span class="n">population</span><span class="p">})</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">southern_africa_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   country_name  life_expect   pop
+0        Angola         61.6   500
+1      Botswana         61.1   600
+2       Lesotho         57.1  1000
+3        Malawi         53.1   150
+4    Mozambique         62.9   490
+5       Namibia         59.3   740
+6  South Africa         59.3   300
+7     Swaziland         62.3   781
+8        Zambia         61.2   610
+9      Zimbabwe         59.3   504
+</pre></div>
+</div>
+</div>
+</div>
+<p>We have a DataFrame with three columns: country_name, life_expect, and pop and 10 rows (observations), where each row represent country. You can use the <code class="docutils literal notranslate"><span class="pre">.head()</span></code> function to view the first observations</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">southern_africa_df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  country_name  life_expect   pop
+0       Angola         61.6   500
+1     Botswana         61.1   600
+2      Lesotho         57.1  1000
+3       Malawi         53.1   150
+4   Mozambique         62.9   490
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can check how many columns and rows in the DataFrame by using <code class="docutils literal notranslate"><span class="pre">.info()</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">southern_africa_df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 10 entries, 0 to 9
+Data columns (total 3 columns):
+ #   Column        Non-Null Count  Dtype  
+---  ------        --------------  -----  
+ 0   country_name  10 non-null     object 
+ 1   life_expect   10 non-null     float64
+ 2   pop           10 non-null     int64  
+dtypes: float64(1), int64(1), object(1)
+memory usage: 368.0+ bytes
+None
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can get more information of your DataFrame by using <code class="docutils literal notranslate"><span class="pre">.describe()</span></code> function, it will return the summary statistics of all numeric columns:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">southern_africa_df</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       life_expect          pop
+count    10.000000    10.000000
+mean     59.720000   567.500000
+std       2.898582   241.687241
+min      53.100000   150.000000
+25%      59.300000   492.500000
+50%      60.200000   552.000000
+75%      61.500000   707.500000
+max      62.900000  1000.000000
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can subset both rows and columns, to return only those you are interested in. Let’s say you want to select only <code class="docutils literal notranslate"><span class="pre">country_name</span></code> and <code class="docutils literal notranslate"><span class="pre">pop</span></code> columns, you can do this by wrapping the DataFrame within double square brackets (<code class="docutils literal notranslate"><span class="pre">[[]]</span></code>) and specify those coulumns:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">southern_africa_df</span><span class="p">[[</span><span class="s2">&quot;country_name&quot;</span><span class="p">,</span> <span class="s2">&quot;pop&quot;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   country_name   pop
+0        Angola   500
+1      Botswana   600
+2       Lesotho  1000
+3        Malawi   150
+4    Mozambique   490
+5       Namibia   740
+6  South Africa   300
+7     Swaziland   781
+8        Zambia   610
+9      Zimbabwe   504
+</pre></div>
+</div>
+</div>
+</div>
+<p>You can also select rows. For example, subset observations from Angola and save as a new DataFrame named <code class="docutils literal notranslate"><span class="pre">angola</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">angola</span> <span class="o">=</span> <span class="n">southern_africa_df</span><span class="p">[</span><span class="n">southern_africa_df</span><span class="p">[</span><span class="s2">&quot;country_name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Angola&quot;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">angola</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  country_name  life_expect  pop
+0       Angola         61.6  500
+</pre></div>
+</div>
+</div>
+</div>
+<p>Select observations from Angola and Zimbabwe:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">angola_zim</span> <span class="o">=</span> <span class="n">southern_africa_df</span><span class="p">[</span><span class="n">southern_africa_df</span><span class="p">[</span><span class="s2">&quot;country_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s2">&quot;Angola&quot;</span><span class="p">,</span> <span class="s2">&quot;Zimbabwe&quot;</span><span class="p">])]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">angola_zim</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  country_name  life_expect  pop
+0       Angola         61.6  500
+9     Zimbabwe         59.3  504
+</pre></div>
+</div>
+</div>
+</div>
+<p>Subset observations where life expectancy is below 60:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">low_life_expect</span> <span class="o">=</span> <span class="n">southern_africa_df</span><span class="p">[</span><span class="n">southern_africa_df</span><span class="p">[</span><span class="s2">&quot;life_expect&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">60</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">low_life_expect</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   country_name  life_expect   pop
+2       Lesotho         57.1  1000
+3        Malawi         53.1   150
+5       Namibia         59.3   740
+6  South Africa         59.3   300
+9      Zimbabwe         59.3   504
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="conclusion">
+<h2><span class="section-number">2.5. </span>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h2>
+<p>There are many other ways in which you can manipulate, transform and analyse DataFrame, and <code class="docutils literal notranslate"><span class="pre">pandas</span></code> provide many methods to handle DataFrames. We will dive deepr into DataFrames and Pandas in one of the chapter.</p>
+<p>In this chapter we have discussed different data structures that can hold data:</p>
+<ul class="simple">
+<li><p>Lists</p></li>
+<li><p>Numpy Arrays</p></li>
+<li><p>Dictionaries</p></li>
+<li><p>DataFrames</p></li>
+</ul>
+<p>In the next chapter, we explore various ways in which we can visualise data.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="chapter_1_intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Introduction to Python Programming</p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lists">2.1. Lists</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subset-a-list">2.1.1. Subset a list</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulate-a-list">2.1.2. Manipulate a list</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#manipulating-list-with-numeric-data">2.1.3. Manipulating list with numeric data</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-arrays">2.2. NumPy Arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-statistics-and-mathematical-operations">2.2.1. Summary statistics and mathematical operations</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dictionaries">2.3. Dictionaries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataframes">2.4. DataFrames</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">2.5. Conclusion</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By <a href="https://aubreympungose.github.io/">Aubrey Mpungose</a>
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
